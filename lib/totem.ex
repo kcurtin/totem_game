@@ -1,0 +1,2 @@
+defmodule Totem do
+end
