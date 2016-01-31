@@ -34,7 +34,14 @@ defmodule Leaderboard do
   end
 
   def handle_cast({:add, scoreable}, scoreables) do
-    {:noreply, rank([scoreable | scoreables])}
+    index = Enum.find_index(scoreables, &(&1.id == scoreable.id))
+
+    if index do
+      scoreables = List.replace_at(scoreables, index, scoreable)
+      {:noreply, rank(scoreables)}
+    else
+      {:noreply, rank([scoreable | scoreables])}
+    end
   end
 
   defp rank(scoreables), do: Enum.sort(scoreables, &(&1.score > &2.score))
