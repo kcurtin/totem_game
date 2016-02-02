@@ -21,8 +21,8 @@ defmodule Totem.Game do
     {:ok, []}
   end
 
-  def start_link do
-    GenServer.start_link(__MODULE__, [])
+  def start_link(name) do
+    GenServer.start_link(__MODULE__, [], name: name)
   end
 
   def handle_cast({:add_player, player}, players) do

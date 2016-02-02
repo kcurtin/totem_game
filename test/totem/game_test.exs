@@ -4,8 +4,8 @@ defmodule Totem.GameTest do
   alias Totem.Game
   alias Totem.Player
 
-  setup do
-    {:ok, game} = Game.start_link
+  setup context do
+    {:ok, game} = Game.start_link(context.test)
     {:ok, game: game}
   end
 

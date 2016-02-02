@@ -7,7 +7,7 @@ defmodule Totem.Supervisor do
 
   def init([]) do
     children = [
-    #   worker(Totem.Game, [Totem.Game])
+      worker(Totem.Game, [Totem.Game])
     ]
 
     supervise(children, strategy: :one_for_one)
