@@ -13,6 +13,8 @@ defmodule Leaderboard do
     GenServer.start_link(__MODULE__, list)
   end
 
+  defp rank(scoreables), do: Enum.sort(scoreables, &(&1.score > &2.score))
+
   ###
   # GenServer API
   ###
@@ -43,6 +45,4 @@ defmodule Leaderboard do
       {:noreply, rank([scoreable | scoreables])}
     end
   end
-
-  defp rank(scoreables), do: Enum.sort(scoreables, &(&1.score > &2.score))
 end
