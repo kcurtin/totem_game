@@ -7,6 +7,7 @@ defmodule Totem.Supervisor do
 
   def init([]) do
     children = [
+      worker(Totem.Repo, []),
       worker(Totem.Game, [Totem.Game])
     ]
 

@@ -10,18 +10,25 @@ defmodule Totem.Mixfile do
      deps: deps]
   end
 
-  # Configuration for the OTP application
-  #
-  # Type "mix help compile.app" for more information
   def application do
     [
-      applications: [:logger, :cowboy, :plug],
+      applications: [
+        :logger,
+        :cowboy,
+        :plug,
+        :postgrex,
+        :ecto
+      ],
       mod: {Totem, []}
     ]
   end
 
   defp deps do
-    [{:cowboy, "~> 1.0.0"},
-      {:plug, "~> 1.0"}]
+    [
+      {:cowboy, "~> 1.0.0"},
+      {:plug, "~> 1.0"},
+      {:postgrex, ">= 0.0.0"},
+      {:ecto, "~> 1.1"}
+    ]
   end
 end

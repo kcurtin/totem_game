@@ -1,13 +1,19 @@
 defmodule Totem.Player do
-  defstruct name: nil,
-            x: 0,
-            y: 0,
-            id: nil,
-            score: 0,
-            health: 100,
-            alive: true
+  use Ecto.Schema
 
+  alias Totem.Repo
 
-  def new, do: %__MODULE__{id: :random.uniform(100)}
-  def new(score), do: %__MODULE__{score: score, id: :random.uniform(100)}
+  schema "players" do
+    field :name
+    field :x, :integer, default: 0
+    field :y, :integer, default: 0
+    field :health, :integer, default: 100
+    field :score, :integer, default: 0
+    field :alive, :boolean, default: true
+
+    timestamps
+  end
+
+  def new, do: Repo.insert! %__MODULE__{}
+  def new(score), do: Repo.insert! %__MODULE__{score: score}
 end
