@@ -28,7 +28,8 @@ defmodule Totem.Mixfile do
       {:cowboy, "~> 1.0.0"},
       {:plug, "~> 1.0"},
       {:postgrex, ">= 0.0.0"},
-      {:ecto, "~> 1.1"}
+      {:ecto, "~> 1.1"},
+      {:poison, "~> 1.0"}
     ]
   end
 end
