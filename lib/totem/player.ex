@@ -3,6 +3,7 @@ defmodule Totem.Player do
 
   alias Totem.Repo
 
+  @derive {Poison.Encoder, only: [:name, :x, :y, :health, :score, :alive]}
   schema "players" do
     field :name
     field :x, :integer, default: 0

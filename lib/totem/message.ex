@@ -3,9 +3,10 @@ defmodule Totem.Message do
 
   alias Totem.Repo
 
+  @derive {Poison.Encoder, only: [:content, :player_id]}
   schema "messages" do
     field :content
-    field :player_id, :integer
+    belongs_to :player, Totem.Player
 
     timestamps
   end

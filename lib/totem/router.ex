@@ -1,5 +1,9 @@
 defmodule Totem.Router do
+  require IEx
   use Plug.Router
+
+  alias Totem.Message
+  alias Totem.Repo
 
   plug :match
   plug :dispatch
@@ -8,12 +12,21 @@ defmodule Totem.Router do
     send_resp(conn, 200, "world")
   end
 
-  post "/message" do
-    send_resp(conn, 200, "world")
+  post "/messages" do
+    params = conn.params
+
+    {:ok, msg} = %Message{content: params["content"], player_id: params["player_id"]} |> Repo.insert
+
+
+    send_resp(conn, 200, Poison.encode!(msg))
   end
 
-  post "/messages" do
-    send_resp(conn, 200, "world")
+  get "/messages" do
+    messages = Message
+               |> Repo.all
+               |> Poison.encode!
+
+    send_resp(conn, 200, messages)
   end
 
   match _ do
