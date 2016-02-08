@@ -1,22 +1,14 @@
 defmodule Totem.RouterTest do
-  use ExUnit.Case, async: true
+  use ExUnit.Case
+  use DBTransactions
   use Plug.Test
   require IEx
 
   alias Totem.Router
   alias Totem.Player
   alias Totem.Message
-  alias Ecto.Adapters.SQL
 
   @opts Router.init([])
-
-  setup do
-    SQL.begin_test_transaction(Totem.Repo)
-
-    on_exit fn ->
-      SQL.rollback_test_transaction(Totem.Repo)
-    end
-  end
 
   test "creates a new game" do
     conn = conn(:post, "/games")
@@ -28,8 +20,8 @@ defmodule Totem.RouterTest do
 
   test "returns messages" do
     player = Player.new
-    message_1 = Message.new("Test", player)
-    message_2 = Message.new("Test", player)
+    message_1 = Message.new("First message", player)
+    message_2 = Message.new("Second message", player)
     conn = conn(:get, "/messages")
     conn = Router.call(conn, @opts)
 

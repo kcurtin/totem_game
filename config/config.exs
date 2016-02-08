@@ -2,13 +2,6 @@
 # and its dependencies with the aid of the Mix.Config module.
 use Mix.Config
 
-config :totem, Totem.Repo,
-  adapter: Ecto.Adapters.Postgres,
-  database: "totem",
-  username: "postgres",
-  password: "postgres",
-  pool: Ecto.Adapters.SQL.Sandbox
-
 config :logger, level: :info
 
 # This configuration is loaded before any dependency and is restricted
@@ -36,4 +29,4 @@ config :logger, level: :info
 # Configuration from the imported file will override the ones defined
 # here (which is why it is important to import them last).
 #
-#     import_config "#{Mix.env}.exs"
+import_config "#{Mix.env}.exs"

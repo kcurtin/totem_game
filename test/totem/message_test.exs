@@ -1,5 +1,6 @@
 defmodule Totem.MessageTest do
   use ExUnit.Case
+  use DBTransactions
   alias Totem.Message
   alias Totem.Player
 
